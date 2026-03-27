@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Flora Encyclopedia Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1b4332","accent": "#e07a5f","highlight": "#e883fa","paper": "#fdf6e3","paper-dark": "#f4ebd0","neutral-100": "#f1f4f1",
+              "neutral-800": "#2c2c2c",
+              "neutral-600": "#5c5c5c",
+              "deep-forest": "#1b4332",
+            },
+            fontFamily: {
+              "display": ["Playfair Display", "serif"],
+              "body": ["Work Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            backgroundImage: {
+               'doodle-pattern': "url(\"data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M80 80c-5-10-15-10-20 0s-5 20 5 25 20 5 25-5 5-15-10-20z' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='0.3'/%3E%3Cpath d='M320 120c0-12 10-20 20-20s20 8 20 20-10 20-20 20-20-8-20-20z' stroke='%231b4332' stroke-width='2' stroke-linecap='round' stroke-dasharray='4 4' opacity='0.2'/%3E%3Cpath d='M150 250q10-20 30-10t10 30-20 20-30-10 0-30z' stroke='%23e883fa' stroke-width='2' stroke-linecap='round' opacity='0.25'/%3E%3Cpath d='M60 300c10-5 20 5 20 15s-10 15-20 10-15-10-10-20 10-5 10-5z' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round' opacity='0.25'/%3E%3Cpath d='M350 320c0 10-10 20-20 20s-20-10-20-20 10-20 20-20 20 10 20 20z' stroke='%231b4332' stroke-width='2' opacity='0.2'/%3E%3Cpath d='M220 60c-8 8-8 20 0 28s20 8 28 0 8-20 0-28-20-8-28 0z' stroke='%23e883fa' stroke-width='2' stroke-linecap='round' opacity='0.2'/%3E%3Cpath d='M200 200c0 5 5 10 15 10' stroke='%231b4332' stroke-width='2' stroke-linecap='round' opacity='0.2'/%3E%3Cpath d='M50 150c5 0 10-5 10-15' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round' opacity='0.2'/%3E%3C/g%3E%3C/svg%3E\")",
+            }
+          },
+        },
+      }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdf6e3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e07a5f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1b4332;
+        }
+    </style>
+</head>
+<body class="bg-paper text-neutral-800 font-body min-h-screen flex flex-col relative overflow-x-hidden">
+<div class="absolute inset-0 bg-doodle-pattern pointer-events-none z-0 bg-repeat opacity-60 mix-blend-multiply"></div>
+<div class="relative z-10 flex flex-col grow w-full max-w-[1440px] mx-auto">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-accent/20 px-6 py-4 lg:px-10 bg-paper/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+<div class="flex items-center gap-3 text-deep-forest">
+<div class="size-8 text-accent">
+<svg class="w-full h-full" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold font-display tracking-wide text-primary">Flora Encyclopedia</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-9">
+<a class="text-neutral-800 text-sm font-medium hover:text-accent transition-colors font-body" href="#">Articles</a>
+<a class="text-neutral-800 text-sm font-medium hover:text-accent transition-colors font-body" href="#">Glossary</a>
+<a class="text-neutral-800 text-sm font-medium hover:text-accent transition-colors font-body" href="#">About Us</a>
+<a class="text-neutral-800 text-sm font-medium hover:text-accent transition-colors font-body" href="#">Contribute</a>
+</nav>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary text-paper text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all shadow-md shadow-primary/20 border-b-2 border-primary/50 active:border-b-0 active:translate-y-1">
+<span class="truncate">Sign In</span>
+</button>
+</div>
+<button class="md:hidden text-neutral-800">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex-1 px-4 py-8 lg:px-40 lg:py-12 flex justify-center">
+<div class="w-full max-w-[1024px] flex flex-col gap-12">
+<section class="@container">
+<div class="flex flex-col-reverse gap-8 lg:flex-row lg:items-center lg:gap-16">
+<div class="flex flex-col gap-8 flex-1">
+<div class="flex flex-col gap-4 text-left relative">
+<div class="absolute -left-6 -top-6 w-12 h-12 bg-accent/10 rounded-full blur-xl animate-pulse"></div>
+<h1 class="text-primary text-5xl font-black font-display leading-[1.1] tracking-[-0.01em] md:text-6xl lg:text-7xl relative z-10 italic">
+                                    Discover the World of <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight not-italic">Flora</span>
+</h1>
+<h2 class="text-neutral-600 text-lg font-normal leading-relaxed max-w-xl font-body border-l-4 border-accent/30 pl-4">
+                                    Explore our comprehensive collection of detailed articles on flowers, plants, and trees from around the globe. Curated by botanists, designed for you.
+                                </h2>
+</div>
+<div class="flex flex-col w-full max-w-[520px]">
+<div class="flex w-full items-stretch rounded-xl h-14 shadow-sm ring-1 ring-neutral-400/50 bg-paper-dark focus-within:ring-2 focus-within:ring-accent transition-all overflow-hidden">
+<div class="text-accent flex items-center justify-center pl-4 pr-2">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full min-w-0 flex-1 bg-transparent border-none text-neutral-800 placeholder:text-neutral-500/70 focus:ring-0 px-2 h-full text-base font-normal font-body" placeholder="Search for a plant (e.g., 'Monstera')..." value=""/>
+<button class="bg-accent hover:bg-accent/90 text-white font-bold px-6 text-sm sm:text-base m-1 rounded-lg transition-colors font-body shadow-sm">
+                                        Explore
+                                    </button>
+</div>
+<p class="text-xs text-neutral-500 mt-2 ml-1 font-body">Popular: <span class="text-accent cursor-pointer hover:underline">Orchids</span>, <span class="text-accent cursor-pointer hover:underline">Succulents</span>, <span class="text-accent cursor-pointer hover:underline">Roses</span></p>
+</div>
+</div>
+<div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-accent/10 rounded-full blur-3xl -z-10 mix-blend-multiply"></div>
+<div class="relative rounded-sm overflow-hidden shadow-2xl shadow-primary/20 border-8 border-white w-full max-w-[500px] aspect-[4/5] md:aspect-square lg:aspect-[4/5] rotate-1">
+<img alt="Close up of a delicate pink and white lily flower" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 sepia-[0.2]" data-alt="Close up of a delicate pink and white lily flower" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf4Ahi1e9O3nPBr2PsxIF4rP56_Kdh9QeLU0ZBa9aq0-fKDLaO6feDY_DLWPVxRNxOQAlHF1CfJJ-806fxDKzf8jT8GtzbuSHGvbDSt7tee5UuuHBST7TE_jsYwlWKkXkvFdts_o_DsNzZ38QhU9OkjYi3U9YFo2upSySbWsFeVIlSO3RzgP2Cgr9VJzzX1f5tDSw7auL6XjEFRmi1AnRfcYbTJ78bxqIToXGS9xoLyeC5PcPZLXIIF_RrL-Ntsx_Uc8qV0Pe-zsU"/>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-8">
+<div class="flex items-end justify-between mb-8 px-2 border-b border-accent/20 pb-4">
+<h2 class="text-deep-forest text-3xl md:text-4xl font-bold font-display leading-tight tracking-tight relative inline-block">
+                            Featured Articles
+                            <span class="absolute -bottom-1 left-0 w-1/3 h-1 bg-highlight rounded-full"></span>
+</h2>
+<a class="text-accent font-medium text-sm hover:underline flex items-center gap-1 font-body" href="#">View all <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group flex flex-col bg-paper-dark rounded-sm overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent/10 border border-neutral-200 transition-all duration-300 hover:-translate-y-1">
+<div class="w-full aspect-[4/3] overflow-hidden relative">
+<img alt="Vibrant red roses in a garden" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 contrast-[0.95] brightness-[1.05]" data-alt="Vibrant red roses in a garden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSqmNp8ad4KRBk1rswF6Pysv29vvwO6lxZ7IWz9fuX2LgfDqYP7Zjnptuds8mjfKWQp6mttos0D_ghtCJ2YPS085HUxzm54FG3yBg5KIMp8cpBkQT60lFtSZ7MVtCJUEEBYMo1LT6jDPr7S0LKqz6Kyg8WX_vd8l-xUWRca8F2VxHcTId8zgH_-qwlAYccka8OPVmlNcbC8Yk6iwh0Ybrf_qlRA8jbyTQ3_9waex4d6KXPjcbFiHRGlRoCMu-zFgkVwRrl1o076wk"/>
+<div class="absolute inset-0 border-4 border-white/40 pointer-events-none"></div>
+</div>
+<div class="flex flex-col flex-1 p-5 gap-3 border-t-2 border-accent/10 group-hover:border-highlight transition-colors">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20 text-xs font-bold uppercase tracking-wider font-body">Flower</span>
+<span class="text-neutral-500 text-xs font-body italic">5 min read</span>
+</div>
+<h3 class="text-primary text-xl font-bold font-display leading-snug group-hover:text-accent transition-colors">The Majestic Rose: History &amp; Varieties</h3>
+<p class="text-neutral-600 text-sm leading-relaxed line-clamp-2 font-body">A deep dive into the fascinating history and thousands of varieties of the world's most popular flower.</p>
+<div class="mt-auto pt-2">
+<a class="text-accent group-hover:text-highlight text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all font-body uppercase tracking-wide" href="#">
+                                        Read Article <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+<div class="group flex flex-col bg-paper-dark rounded-sm overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent/10 border border-neutral-200 transition-all duration-300 hover:-translate-y-1">
+<div class="w-full aspect-[4/3] overflow-hidden relative">
+<img alt="Exotic purple orchid in rainforest" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 contrast-[0.95] brightness-[1.05]" data-alt="Exotic purple orchid in rainforest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOzNVaJkzJ9XHmCH5EVfjvCCCLP4nlOtAA0zp6IifETq82TmiQ1MbpiYqTQaESeQeh-GU7dQiHHl8N7rKIqTI-nTlA3gko76JEqIwXgd6PZpXFGYLc3EFMtomWfe6JtqXWnFF1GBKSckJEm57XbMdzIHuhBXU36EMuDtKP0bTG6WwZAopP0211OZEiQ0x-AH1gA2NmELAVu6Lc87btRfBbSGGJUVUyDkd3FP8CDhdkggm8GWZNK0sIMa736Df6K-C2ZkOyyPzpxP0"/>
+<div class="absolute inset-0 border-4 border-white/40 pointer-events-none"></div>
+</div>
+<div class="flex flex-col flex-1 p-5 gap-3 border-t-2 border-accent/10 group-hover:border-highlight transition-colors">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-highlight/10 text-highlight border border-highlight/20 text-xs font-bold uppercase tracking-wider font-body">Rare</span>
+<span class="text-neutral-500 text-xs font-body italic">8 min read</span>
+</div>
+<h3 class="text-primary text-xl font-bold font-display leading-snug group-hover:text-accent transition-colors">Orchids of the Amazon</h3>
+<p class="text-neutral-600 text-sm leading-relaxed line-clamp-2 font-body">Discover the rare, elusive, and breathtakingly beautiful orchids found deep within the Amazon rainforest.</p>
+<div class="mt-auto pt-2">
+<a class="text-accent group-hover:text-highlight text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all font-body uppercase tracking-wide" href="#">
+                                        Read Article <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+<div class="group flex flex-col bg-paper-dark rounded-sm overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent/10 border border-neutral-200 transition-all duration-300 hover:-translate-y-1">
+<div class="w-full aspect-[4/3] overflow-hidden relative">
+<img alt="Close up of green succulent plant patterns" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 contrast-[0.95] brightness-[1.05]" data-alt="Close up of green succulent plant patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjDyCGpz4ZBmbBRHbZ1dVxSyiwGuvUZOOyQZvZKdysBdd61-ASpbtwO6c5jUVYYKYo1t4udX3zDMiNCd8nK5IdKoptn_TiPHLXEcK-A4B4fJV7-G_LzQHYVcoxVYOsA5ZxMBTmoIerkhA18xJ74mwXubtZ53jZqUW1DiY9l9nbuYwJmlz3HFHi8ma-zuHFe-JIFJsc00EJi5Ke5Ees3SNXqiK_XX93DOvs1uoEm6SwUb0DyD4hUTdlEuc1_j3Z626GQ-PlpsDDqho"/>
+<div class="absolute inset-0 border-4 border-white/40 pointer-events-none"></div>
+</div>
+<div class="flex flex-col flex-1 p-5 gap-3 border-t-2 border-accent/10 group-hover:border-highlight transition-colors">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-bold uppercase tracking-wider font-body">Care Guide</span>
+<span class="text-neutral-500 text-xs font-body italic">4 min read</span>
+</div>
+<h3 class="text-primary text-xl font-bold font-display leading-snug group-hover:text-accent transition-colors">Succulents Care Guide</h3>
+<p class="text-neutral-600 text-sm leading-relaxed line-clamp-2 font-body">Essential tips for keeping your succulents healthy and thriving, from watering schedules to sunlight needs.</p>
+<div class="mt-auto pt-2">
+<a class="text-accent group-hover:text-highlight text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all font-body uppercase tracking-wide" href="#">
+                                        Read Article <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-8 mb-16 relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[120%] bg-accent/5 rounded-full blur-3xl -z-10"></div>
+<h2 class="text-deep-forest text-2xl font-bold font-display leading-tight tracking-tight px-2 pb-6 border-b border-accent/20 mb-4 inline-block">Browse by Category</h2>
+<div class="flex flex-wrap gap-4 pt-2">
+<a class="flex items-center gap-3 px-5 py-3 bg-paper-dark rounded-sm shadow-sm border border-neutral-200 hover:border-accent hover:shadow-accent/10 hover:shadow-md transition-all group" href="#">
+<div class="w-10 h-10 rounded-full bg-paper border border-accent/20 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">local_florist</span>
+</div>
+<span class="font-medium text-neutral-800 font-display text-lg group-hover:text-accent">Flowers</span>
+</a>
+<a class="flex items-center gap-3 px-5 py-3 bg-paper-dark rounded-sm shadow-sm border border-neutral-200 hover:border-accent hover:shadow-accent/10 hover:shadow-md transition-all group" href="#">
+<div class="w-10 h-10 rounded-full bg-paper border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">forest</span>
+</div>
+<span class="font-medium text-neutral-800 font-display text-lg group-hover:text-primary">Trees</span>
+</a>
+<a class="flex items-center gap-3 px-5 py-3 bg-paper-dark rounded-sm shadow-sm border border-neutral-200 hover:border-accent hover:shadow-accent/10 hover:shadow-md transition-all group" href="#">
+<div class="w-10 h-10 rounded-full bg-paper border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">potted_plant</span>
+</div>
+<span class="font-medium text-neutral-800 font-display text-lg group-hover:text-primary">Indoor Plants</span>
+</a>
+<a class="flex items-center gap-3 px-5 py-3 bg-paper-dark rounded-sm shadow-sm border border-neutral-200 hover:border-accent hover:shadow-accent/10 hover:shadow-md transition-all group" href="#">
+<div class="w-10 h-10 rounded-full bg-paper border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">grass</span>
+</div>
+<span class="font-medium text-neutral-800 font-display text-lg group-hover:text-primary">Wild Herbs</span>
+</a>
+<a class="flex items-center gap-3 px-5 py-3 bg-paper-dark rounded-sm shadow-sm border border-neutral-200 hover:border-accent hover:shadow-accent/10 hover:shadow-md transition-all group" href="#">
+<div class="w-10 h-10 rounded-full bg-paper border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">nutrition</span>
+</div>
+<span class="font-medium text-neutral-800 font-display text-lg group-hover:text-primary">Edible</span>
+</a>
+</div>
+</section>
+</div>
+</main>
+<footer class="bg-paper-dark border-t border-accent/20 relative z-10">
+<div class="max-w-[1024px] mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3 text-neutral-800">
+<div class="size-6 text-primary">
+<svg class="w-full h-full" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-lg font-bold font-display text-primary">Flora Encyclopedia</span>
+</div>
+<div class="flex gap-6 text-sm text-neutral-500 font-body">
+<a class="hover:text-accent" href="#">Privacy Policy</a>
+<a class="hover:text-accent" href="#">Terms of Service</a>
+<a class="hover:text-accent" href="#">Contact</a>
+</div>
+<div class="text-sm text-neutral-400 font-body">
+                    © 2023 Flora Encyclopedia.
+                </div>
+</div>
+</footer>
+</div>
+
+</body></html>
