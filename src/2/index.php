@@ -1,3 +1,21 @@
+<?php
+require_once 'database.php';
+require_once 'article.php';
+
+$database = new Database();
+$db = $database->getConnection();
+$limit = 3;
+
+$query = "SELECT a.*, c.category_name 
+            FROM article a
+            JOIN category c ON a.id_category = c.id
+            ORDER BY date_publication DESC LIMIT :limit";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+    $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,51 +76,24 @@
                 </div>
 
                 <div class="article-grid">
-                    <article class="card">
+                    <?php foreach ($articles as $article){
+                        echo '<article class="card">
                         <div class="card-img-container">
-                            <img src="../../assets/imgs/lily2.jpg" alt="Roses">
+                            <img src="../../articles/'.$article['id'].'/imgs/' . $article['image_path'] . '.jpg" alt="Roses">
                         </div>
                         <div class="card-body">
                             <div class="card-meta">
-                                <span class="badge flower">FLOWER</span>
-                                <p class="read-time">5 min read</p>
+                                <span class="badge flower">' . $article['category_name'] . '</span>
+                                <p class="read-time">'.$article['date_publication'].'</p>
                             </div>
-                            <h3>The Majestic Rose: History & Varieties</h3>
-                            <p>A deep dive into the fascinating history and thousands of varieties...</p>
+                            <h3>' . $article['title'] . '</h3>
+                            <p>' . $article['content'] . '</p>
                             <a href="#" class="read-link">READ ARTICLE <span class="material-symbols-outlined">arrow_right_alt</span></a>
                         </div>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-img-container">
-                            <img src="../../assets/imgs/lily3.jpg" alt="Orchid">
-                        </div>
-                        <div class="card-body">
-                            <div class="card-meta">
-                                <span class="badge rare">RARE</span>
-                                <p class="read-time">8 min read</p>
-                            </div>
-                            <h3>Orchids of the Amazon</h3>
-                            <p>Discover the rare, elusive, and breathtakingly beautiful orchids found...</p>
-                            <a href="#" class="read-link">READ ARTICLE <span class="material-symbols-outlined">arrow_right_alt</span></a>
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-img-container">
-                            <img src="../../assets/imgs/lily.jpg" alt="Succulents">
-                        </div>
-                        <div class="card-body">
-                            <div class="card-meta">
-                                <span class="badge care">CARE GUIDE</span>
-                                <p class="read-time">4 min read</p>
-                            </div>
-                            <h3>Succulents Care Guide</h3>
-                            <p>Essential tips for keeping your succulents healthy and thriving...</p>
-                            <a href="#" class="read-link">READ ARTICLE <span class="material-symbols-outlined">arrow_right_alt</span></a>
-                            </div>
-                    </article>
-                    
+                    </article>';
+                    } 
+                        
+                        ?>
                 </div>
             </section>
             <section class="category-section">
@@ -151,3 +142,12 @@
     </div>
 </body>
 </html>
+<?php
+echo "<table border='1'>
+<tr><th>ID</th><th>Title</th><th>Content</th><th>UserID</th></tr>";
+foreach ($articles as $article) {
+    echo "<tr><td>{$article['id']}</td><td>{$article['title']}</td><td>{$article['content']}</td><td>{$article['id_user']}</td></tr>";
+    echo "<tr><td colspan='4'> {$article['category_name']}</td></tr>";
+        }
+echo "</table>";
+
