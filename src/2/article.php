@@ -101,6 +101,19 @@ class article{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Get article by ID
+    public static function getById($id) {
+        $database = new Database();
+        $db = $database->getConnection();
+
+        $query = "SELECT * FROM article WHERE id = :id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Get articles by user
     public static function getByUser($id_user, $limit = 3) {
         $database = new Database();
@@ -109,6 +122,20 @@ class article{
         $query = "SELECT * FROM article WHERE id_user = :id_user ORDER BY date_publication DESC LIMIT :limit";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Get articles by category
+    public static function getByCategory($id_category, $limit = 3) {
+        $database = new Database();
+        $db = $database->getConnection();
+
+        $query = "SELECT * FROM article WHERE id_category = :id_category ORDER BY date_publication DESC LIMIT :limit";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id_category', $id_category, PDO::PARAM_INT);
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
         $stmt->execute();
 

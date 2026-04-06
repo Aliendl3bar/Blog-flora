@@ -1,6 +1,7 @@
 <?php
 require_once 'database.php';
 require_once 'article.php';
+require_once 'category.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -88,7 +89,7 @@ $query = "SELECT a.*, c.category_name
                             </div>
                             <h3>' . $article['title'] . '</h3>
                             <p>' . $article['content'] . '</p>
-                            <a href="#" class="read-link">READ ARTICLE <span class="material-symbols-outlined">arrow_right_alt</span></a>
+                            <a href="article_page.php" class="read-link">READ ARTICLE <span class="material-symbols-outlined">arrow_right_alt</span></a>
                         </div>
                     </article>';
                     } 
@@ -101,26 +102,15 @@ $query = "SELECT a.*, c.category_name
                     <h2 class="section-title">Browse by Category</h2>
                 </div>
                 <div class="category-grid">
-                    <a href="#" class="category-card">
-                        <span class="material-symbols-outlined">local_florist</span>
-                        <h3>Flowers</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <span class="material-symbols-outlined">forest</span>
-                        <h3>Trees</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <span class="material-symbols-outlined">potted_plant</span>
-                        <h3>Indoor Plants</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <span class="material-symbols-outlined">grass</span>
-                        <h3>Wild Herbs</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <span class="material-symbols-outlined">nutrition</span>
-                        <h3>Edible</h3>
-                    </a>
+                    <?php
+                    $categories = Category::getAll();
+                    foreach ($categories as $category) {
+                        echo '<a href="#" class="category-card">
+                                <span class="material-symbols-outlined">'. $category['category_icon'] .'</span>
+                                <h3>' . $category['category_name'] . '</h3>
+                            </a>';
+                    }
+                    ?>
                 </div>
             </section>
         </main>
@@ -136,18 +126,9 @@ $query = "SELECT a.*, c.category_name
                     <a href="#">Terms of Service</a>
                     <a href="#">Contact</a>
                 </div>
-                <p class="copyright">© 2023 Flora Encyclopedia.</p>
+                <p class="copyright">© 2026 Flora Encyclopedia.</p>
             </div>
         </footer>
     </div>
 </body>
 </html>
-<?php
-echo "<table border='1'>
-<tr><th>ID</th><th>Title</th><th>Content</th><th>UserID</th></tr>";
-foreach ($articles as $article) {
-    echo "<tr><td>{$article['id']}</td><td>{$article['title']}</td><td>{$article['content']}</td><td>{$article['id_user']}</td></tr>";
-    echo "<tr><td colspan='4'> {$article['category_name']}</td></tr>";
-        }
-echo "</table>";
-
