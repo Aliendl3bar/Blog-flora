@@ -15,6 +15,7 @@ class article{
         $this->status_public = $status_public;
         $this->id_user = $id_user;
         $this->date_publication = date('Y-m-d H:i:s');  // Auto-set current date
+        $this->image_path = '';  // Initialize as empty string
     }
 
     public function setTitle($title) {
@@ -82,10 +83,27 @@ class article{
         $stmt->bindParam(':id_category', $this->id_category);
 
         if ($stmt->execute()) {
-            echo "Article saved successfully.";
+            $this->id = $db->lastInsertId();
+            return $this->id;
         } else {
-            echo "Error saving article.";
+            return false;
         }
+    }
+
+    public function updateImagePath($image_path) {
+        $database = new Database();
+        $db = $database->getConnection();
+
+        $query = "UPDATE article SET image_path = :image_path WHERE id = :id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':image_path', $image_path);
+        $stmt->bindParam(':id', $this->id);
+
+        return $stmt->execute();
+    }
+
+    public function getId() {
+        return $this->id;
     }
 
     // Get latest articles
@@ -140,6 +158,20 @@ class article{
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Get category name by id_category
+    public static function getCategoryName($id_category) {
+        $database = new Database();
+        $db = $database->getConnection();
+
+        $query = "SELECT category_name FROM category WHERE id = :id_category";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id_category', $id_category, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['category_name'] : null;
     }
 }
 ?>

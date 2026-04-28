@@ -1,0 +1,237 @@
+/* Contact Page Styles */
+.contact-header {
+    text-align: center;
+    padding: 2rem 5%;
+    margin: 2rem 0;
+}
+
+.contact-header h1 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.contact-header p {
+    font-size: 1.1rem;
+    color: var(--neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.contact-form {
+    background: var(--paper-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(224, 122, 95, 0.2);
+}
+
+.contact-form h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--neutral-800);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid rgba(27, 67, 50, 0.2);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background: var(--paper);
+    color: var(--neutral-800);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.btn-submit {
+    background: var(--accent);
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.btn-submit:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(224, 122, 95, 0.3);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.info-card {
+    background: var(--paper-dark);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(224, 122, 95, 0.2);
+    display: flex;
+    gap: 1rem;
+}
+
+.info-card .icon {
+    font-size: 2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.info-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+}
+
+.info-card p {
+    color: var(--neutral-600);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.info-card a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.info-card a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(224, 122, 95, 0.1);
+    border-radius: 50%;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+}
+
+.social-links a:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.faq-section {
+    margin-top: 4rem;
+    padding: 2rem;
+    background: var(--paper-dark);
+    border-radius: 8px;
+    border: 1px solid rgba(224, 122, 95, 0.2);
+}
+
+.faq-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(224, 122, 95, 0.1);
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.faq-item h3 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.faq-item h3:hover {
+    color: var(--accent);
+}
+
+.faq-item p {
+    color: var(--neutral-600);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-header h1 {
+        font-size: 2rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+}

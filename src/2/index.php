@@ -24,6 +24,7 @@ $query = "SELECT a.*, c.category_name
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flora Encyclopedia</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="search-dropdown.css">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
@@ -40,12 +41,21 @@ $query = "SELECT a.*, c.category_name
             </div>
             
             <nav class="desktop-nav">
-                <a href="#">Articles</a>
-                <a href="#">Glossary</a>
-                <a href="#">About Us</a>
-                <a href="#">Contribute</a>
-                <button class="btn-signin">Sign In</button>
+                <a href="index.php">Articles</a>
+                <a href="contact.html">Contact us</a>
+                <a href="create.php">Create Article</a>
             </nav>
+            
+            <div class="search-box header-search">
+                <span class="material-symbols-outlined search-icon">search</span>
+                <div class="search-container">
+                    <input type="text" id="header-search-input" placeholder="Search..." autocomplete="off">
+                    <div id="header-search-dropdown" class="search-dropdown"></div>
+                </div>
+                <button class="btn-explore" id="header-search-btn">Search</button>
+            </div>
+            
+            <button class="btn-signin">Sign In</button>
 
         </header>
 
@@ -57,8 +67,11 @@ $query = "SELECT a.*, c.category_name
                     
                     <div class="search-box">
                         <span class="material-symbols-outlined search-icon">search</span>
-                        <input type="text" placeholder="Search for a plant (e.g., 'Monstera')...">
-                        <button class="btn-explore">Explore</button>
+                        <div class="search-container">
+                            <input type="text" id="hero-search-input" placeholder="Search for a plant (e.g., 'Monstera')..." autocomplete="off">
+                            <div id="hero-search-dropdown" class="search-dropdown"></div>
+                        </div>
+                        <button class="btn-explore" id="hero-search-btn">Explore</button>
                     </div>
                     <p class="popular-text">Popular: <a href="#">Orchids</a>, <a href="#">Succulents</a>, <a href="#">Roses</a></p>
                 </div>
@@ -131,4 +144,68 @@ $query = "SELECT a.*, c.category_name
         </footer>
     </div>
 </body>
+<script>
+// Search dropdown functionality
+function setupSearchDropdown(inputId, dropdownId, buttonId) {
+    const input = document.getElementById(inputId);
+    const dropdown = document.getElementById(dropdownId);
+    const button = document.getElementById(buttonId);
+
+    input.addEventListener('input', async (e) => {
+        const query = e.target.value.trim();
+        
+        if (query.length < 2) {
+            dropdown.classList.remove('active');
+            return;
+        }
+
+        try {
+            const response = await fetch('search-api.php?q=' + encodeURIComponent(query));
+            const results = await response.json();
+
+            if (results.length === 0) {
+                dropdown.innerHTML = '<div class="search-no-results">No articles found</div>';
+            } else {
+                dropdown.innerHTML = results.map(article => `
+                    <a href="article_page.php?id=${article.id}" class="search-result-item">
+                        <img src="${article.image_path ? article.image_path : '../../assets/imgs/placeholder.jpg'}" alt="${article.title}" class="search-result-img">
+                        <div class="search-result-content">
+                            <div class="search-result-title">${article.title}</div>
+                            <div class="search-result-category">${article.category_name}</div>
+                        </div>
+                    </a>
+                `).join('');
+            }
+            dropdown.classList.add('active');
+        } catch (error) {
+            console.error('Search error:', error);
+        }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (e.target !== input && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    // Handle button click
+    button.addEventListener('click', (e) => {
+        if (input.value.trim()) {
+            window.location.href = 'index.php?search=' + encodeURIComponent(input.value);
+        }
+    });
+
+    // Handle Enter key
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && input.value.trim()) {
+            window.location.href = 'index.php?search=' + encodeURIComponent(input.value);
+        }
+    });
+}
+
+// Initialize search dropdowns
+setupSearchDropdown('header-search-input', 'header-search-dropdown', 'header-search-btn');
+setupSearchDropdown('hero-search-input', 'hero-search-dropdown', 'hero-search-btn');
+</script>
 </html>
